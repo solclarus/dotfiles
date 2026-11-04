@@ -1,0 +1,6 @@
+# ホームに配置しないファイル
+
+README.md
+Brewfile
+install.sh
+scripts

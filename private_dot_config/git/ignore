@@ -1,0 +1,3 @@
+# 全リポジトリ共通で無視するファイル
+
+**/.claude/settings.local.json

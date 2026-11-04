@@ -1,0 +1,8 @@
+# 全シェル共通の環境変数（~ 直下を汚さないよう保存先を寄せる）
+
+# Terminal.app の ~/.zsh_sessions を作らない
+export SHELL_SESSIONS_DISABLE=1
+export LESSHISTFILE="$HOME/.local/state/less/history"
+export PYTHON_HISTORY="$HOME/.local/state/python/history"
+export NPM_CONFIG_CACHE="$HOME/.cache/npm"
+export CODEX_HOME="$HOME/.config/codex"

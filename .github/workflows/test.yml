@@ -1,0 +1,56 @@
+# install.sh が新しい Mac で動くかのテスト
+
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  # 毎週月曜 6:00 JST（Homebrew や mise 側の変化を検知）
+  schedule:
+    - cron: "0 21 * * 0"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: shellcheck
+        run: shellcheck install.sh scripts/*.sh run_onchange_after_30-macos-defaults.sh
+
+  install:
+    runs-on: macos-latest
+    timeout-minutes: 45
+    env:
+      # テスト対象のブランチを clone させる
+      DOTFILES_BRANCH: ${{ github.head_ref || github.ref_name }}
+      # mise のダウンロードでレート制限を避ける
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+    steps:
+      # ~/dotfiles とは別の場所に置き、install.sh 自身に clone させる
+      - uses: actions/checkout@v5
+        with:
+          path: repo
+
+      # 新品の Mac に近づける
+      - name: ランナーの既存設定を退避
+        run: |
+          mkdir -p ~/runner-backup
+          for f in .zshrc .zprofile .zshenv .gitconfig; do
+            [ -e ~/"$f" ] && mv ~/"$f" ~/runner-backup/ || true
+          done
+
+      - name: install.sh（初回）
+        run: sh repo/install.sh
+
+      - name: 検証
+        run: sh ~/dotfiles/scripts/verify.sh
+
+      # 2回目も壊れないこと
+      - name: install.sh（2回目）
+        run: sh repo/install.sh
+
+      - name: 再検証
+        run: sh ~/dotfiles/scripts/verify.sh

@@ -1,0 +1,4 @@
+# zsh のログインシェル設定
+
+# Homebrew の PATH と環境変数
+eval "$(/opt/homebrew/bin/brew shellenv)"

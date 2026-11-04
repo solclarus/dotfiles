@@ -1,0 +1,12 @@
+# mise で管理するランタイムとツール
+
+[tools]
+node = "lts"
+bun = "latest"
+pnpm = "latest"
+python = "3.13"
+"npm:@openai/codex" = "latest"
+
+[settings]
+# .nvmrc や .python-version も読む
+idiomatic_version_file_enable_tools = ["node", "python"]

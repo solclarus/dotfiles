@@ -1,0 +1,30 @@
+# git の設定
+
+[user]
+	name = {{ .git.name }}
+	email = {{ .git.email }}
+	signingkey = {{ .git.signingkey }}
+
+[alias]
+	co = checkout
+	lg = log --oneline
+
+[init]
+	defaultBranch = main
+
+# --- 署名（1Password の SSH 鍵） ---
+[commit]
+	gpgsign = true
+
+[gpg]
+	format = ssh
+
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+	# git log --show-signature で検証するための公開鍵一覧
+	allowedSignersFile = ~/.config/git/allowed_signers
+
+# --- GitHub ---
+# clone と fetch は https のまま、push だけ SSH
+[url "git@github.com:"]
+	pushInsteadOf = https://github.com/

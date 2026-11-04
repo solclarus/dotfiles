@@ -1,0 +1,7 @@
+#!/bin/sh
+# Brewfile をインストール（Brewfile が変わったときだけ実行）
+
+# 変更検知用: {{ include "Brewfile" | sha256sum }}
+set -eu
+eval "$(/opt/homebrew/bin/brew shellenv)"
+brew bundle --file="{{ .chezmoi.sourceDir }}/Brewfile"

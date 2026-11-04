@@ -1,0 +1,8 @@
+# テンプレートから参照する変数
+
+[git]
+name = "solclarus"
+# GitHub の noreply アドレス
+email = "75738518+solclarus@users.noreply.github.com"
+# 1Password の SSH 公開鍵（認証と署名で共用）
+signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAzHnckNeKSFtMPUsqCSgQeQhx0gwDMVY+JaCril1CPV"

@@ -1,0 +1,11 @@
+# SSH の設定
+
+# ssh github で接続できる短縮名
+Host github
+  HostName github.com
+  User git
+  Port 22
+
+# 鍵は 1Password の SSH エージェントから使う
+Host *
+  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
