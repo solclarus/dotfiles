@@ -14,6 +14,12 @@ die() { printf '\033[1;31merror:\033[0m %s\n' "$*" >&2; exit 1; }
 [ "$(uname -s)" = "Darwin" ] || die "macOS 専用です"
 [ "$(uname -m)" = "arm64" ] || die "Apple Silicon 専用です"
 
+# ~/.zshenv が入る前に brew などが ~ 直下へ書かないよう、同じ XDG の場所を先に設定
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+
 # --- Homebrew ---
 # Xcode Command Line Tools もここで入る
 if [ ! -x /opt/homebrew/bin/brew ]; then
