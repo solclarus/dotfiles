@@ -19,7 +19,7 @@ curl -fsSL https://raw.githubusercontent.com/solclarus/dotfiles/main/install.sh 
 ## 使い方
 
 ```sh
-chezmoi edit ~/.zshrc   # 編集
+chezmoi edit ~/.config/zsh/.zshrc   # 編集
 chezmoi apply           # 反映
 chezmoi update          # pull して反映
 sh ~/dotfiles/scripts/verify.sh   # 検証

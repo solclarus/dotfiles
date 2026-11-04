@@ -1,8 +1,18 @@
 # 全シェル共通の環境変数（~ 直下を汚さないよう保存先を寄せる）
 
+# XDG Base Directory（~/.homebrew → ~/.config/homebrew なども連動して移る）
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+# zsh の設定は ~/.config/zsh に置く（このファイルだけは ~ 直下が必須）
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
 # Terminal.app の ~/.zsh_sessions を作らない
 export SHELL_SESSIONS_DISABLE=1
-export LESSHISTFILE="$HOME/.local/state/less/history"
-export PYTHON_HISTORY="$HOME/.local/state/python/history"
-export NPM_CONFIG_CACHE="$HOME/.cache/npm"
-export CODEX_HOME="$HOME/.config/codex"
+export LESSHISTFILE="$XDG_STATE_HOME/less/history"
+export PYTHON_HISTORY="$XDG_STATE_HOME/python/history"
+export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
+export CODEX_HOME="$XDG_CONFIG_HOME/codex"
+export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"

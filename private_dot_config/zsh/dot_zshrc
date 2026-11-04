@@ -13,14 +13,14 @@ path=(
 export EDITOR=nvim
 
 # --- 履歴 ---
-HISTFILE="$HOME/.local/state/zsh/history"
+HISTFILE="$XDG_STATE_HOME/zsh/history"
 HISTSIZE=10000
 SAVEHIST=10000
 # タブ間で共有・連続する重複を残さない・先頭スペースのコマンドは残さない
 setopt share_history hist_ignore_dups hist_ignore_space
 
 # --- 補完 ---
-autoload -Uz compinit && compinit -d "$HOME/.cache/zsh/zcompdump"
+autoload -Uz compinit && compinit -d "$XDG_CACHE_HOME/zsh/zcompdump"
 
 # --- ツール ---
 eval "$(mise activate zsh)"

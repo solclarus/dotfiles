@@ -58,7 +58,7 @@ check_default com.apple.screencapture location "$HOME/Pictures/Screenshots"
 # シェルを一度起動してから、余計なファイルが作られていないか
 echo "~ 直下"
 zsh -lic 'exit' >/dev/null 2>&1
-for f in .zsh_history .zcompdump .zsh_sessions .lesshst; do
+for f in .zshrc .zprofile .zsh_history .zcompdump .zsh_sessions .lesshst .homebrew .claude .claude.json; do
   if [ ! -e "$HOME/$f" ]; then ok "~/$f なし"; else ng "~/$f がある"; fi
 done
 
