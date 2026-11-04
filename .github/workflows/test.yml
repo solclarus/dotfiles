@@ -38,7 +38,8 @@ jobs:
       - name: ランナーの既存設定を退避
         run: |
           mkdir -p ~/runner-backup
-          for f in .zshrc .zprofile .zshenv .gitconfig; do
+          ls -la ~/.homebrew || true
+          for f in .zshrc .zprofile .zshenv .gitconfig .homebrew; do
             [ -e ~/"$f" ] && mv ~/"$f" ~/runner-backup/ || true
           done
 
